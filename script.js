@@ -21,7 +21,26 @@ music.volume = 0.6;
 
 const hitSound = new Audio("hit.mp3");
 hitSound.volume = 0.1;
+// =================
+// MOBILE TOUCH 📱
+// =================
+canvas.addEventListener("touchmove", (e) => {
+  let touch = e.touches[0];
+  let touchY = touch.clientY;
 
+  playerY = touchY - paddleHeight / 2;
+})
+;canvas.addEventListener("touchmove", (e) => {
+  let touch = e.touches[0];
+  let target = touch.clientY - paddleHeight / 2;
+
+  // suaviza movimento
+  playerY += (target - playerY) * 0.3;
+});
+document.getElementById("pauseBtn").onclick = () => {
+  paused = !paused;
+  document.getElementById("pauseMenu").style.display = paused ? "flex" : "none";
+};
 // =================
 // CONFIG
 // =================
